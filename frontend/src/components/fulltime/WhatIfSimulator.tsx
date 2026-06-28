@@ -1,5 +1,4 @@
 import { useState, useMemo, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import type { Match, MatchEvent } from '../../types'
 import { simulateWhatIf } from '../../api/granite'
 import { formations } from '../../data/formations'

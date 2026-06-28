@@ -53,7 +53,7 @@ export const MatchChat = ({ match }: { match: Match }) => {
       return h.slice(Math.max(0, h.length - 10))
     })
 
-    const eventsStr = match.events?.map(e => `${e.minute}' ${e.type} — ${e.playerName} (${e.team}, ${e.detail})`).join("; ") || "No events yet";
+    const eventsStr = match.events?.map((e: any) => `${e.minute}' ${e.type} — ${e.playerName} (${e.team}, ${e.detail})`).join("; ") || "No events yet";
     const match_context = `Live match: ${match.homeTeam?.name} ${match.score?.home ?? 0}-${match.score?.away ?? 0} ${match.awayTeam?.name}\nMinute: ${match.minute}\nEvents so far: ${eventsStr}`;
 
     console.log("MatchChat payload:", {

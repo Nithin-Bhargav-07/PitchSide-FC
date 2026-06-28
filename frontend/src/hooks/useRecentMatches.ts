@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { fetchMatches } from '../api/football'
 import { format, subDays } from 'date-fns'
-import type { Match } from '../types'
 
 export const useRecentMatches = () => {
   return useQuery({

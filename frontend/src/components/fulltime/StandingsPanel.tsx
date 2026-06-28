@@ -1,5 +1,3 @@
-import { useQuery } from '@tanstack/react-query'
-import { fetchStandings } from '../../api/football'
 import type {  Match  } from '../../types'
 import { Skeleton } from '../shared/Skeleton'
 import { GraniteCard } from '../shared/GraniteCard'

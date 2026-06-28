@@ -1,6 +1,6 @@
-import { useState, Component, ReactNode, useEffect } from 'react'
+import { useState, Component, useEffect } from 'react'
+import type { ReactNode } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { format } from 'date-fns'
 import { fetchMatchPreview } from '../api/granite'
 import { getDemoLineup } from '../data/demoLineups'
 import { useStore } from '../store/useStore'

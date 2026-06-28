@@ -15,8 +15,8 @@ export const USA_MEXICO_EVENTS: MatchEvent[] = [
 
 export const USA_MEXICO_MATCH = {
   id: '999999',
-  homeTeam: { id: 1, name: 'United States', shortName: 'USA', tla: 'USA' },
-  awayTeam: { id: 2, name: 'Mexico', shortName: 'MEX', tla: 'MEX' },
+  homeTeam: { id: '1', name: 'United States', shortName: 'USA', tla: 'USA' },
+  awayTeam: { id: '2', name: 'Mexico', shortName: 'MEX', tla: 'MEX' },
   score: { home: 2, away: 1 },
   competition: { name: 'FIFA World Cup 2026 — Round of 16', code: 'WC' },
   venue: 'SoFi Stadium, Los Angeles',
@@ -39,8 +39,8 @@ export const GERMANY_BRAZIL_EVENTS: MatchEvent[] = [
 
 export const GERMANY_BRAZIL_MATCH = {
   id: '999998',
-  homeTeam: { id: 3, name: 'Germany', shortName: 'GER', tla: 'GER' },
-  awayTeam: { id: 4, name: 'Brazil', shortName: 'BRA', tla: 'BRA' },
+  homeTeam: { id: '3', name: 'Germany', shortName: 'GER', tla: 'GER' },
+  awayTeam: { id: '4', name: 'Brazil', shortName: 'BRA', tla: 'BRA' },
   score: { home: 7, away: 1 },
   competition: { name: 'FIFA World Cup 2014 — Semi-Final', code: 'WC' },
   venue: 'Mineirão, Belo Horizonte',
@@ -50,8 +50,8 @@ export const GERMANY_BRAZIL_MATCH = {
 
 export const REAL_MADRID_DORTMUND_MATCH = {
   id: '999997',
-  homeTeam: { id: 5, name: 'B. Dortmund', shortName: 'BVB', tla: 'BVB' },
-  awayTeam: { id: 6, name: 'Real Madrid', shortName: 'RMA', tla: 'RMA' },
+  homeTeam: { id: '5', name: 'B. Dortmund', shortName: 'BVB', tla: 'BVB' },
+  awayTeam: { id: '6', name: 'Real Madrid', shortName: 'RMA', tla: 'RMA' },
   score: { home: 0, away: 2 },
   competition: { name: 'UEFA Champions League 23/24 — Final', code: 'CL' },
   venue: 'Wembley Stadium, London',
@@ -61,8 +61,8 @@ export const REAL_MADRID_DORTMUND_MATCH = {
 
 export const MAN_CITY_WEST_HAM_MATCH = {
   id: '999996',
-  homeTeam: { id: 7, name: 'Man City', shortName: 'MCI', tla: 'MCI' },
-  awayTeam: { id: 8, name: 'West Ham', shortName: 'WHU', tla: 'WHU' },
+  homeTeam: { id: '7', name: 'Man City', shortName: 'MCI', tla: 'MCI' },
+  awayTeam: { id: '8', name: 'West Ham', shortName: 'WHU', tla: 'WHU' },
   score: { home: 3, away: 1 },
   competition: { name: 'Premier League 23/24 — Matchday 38', code: 'PL' },
   venue: 'Etihad Stadium, Manchester',

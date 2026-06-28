@@ -8,6 +8,8 @@ export interface Team {
 
 export interface Match {
   id: string
+  group?: string
+  events?: any[]
   competition: { name: string; code: string }
   utcDate: string
   status: 'SCHEDULED' | 'LIVE' | 'IN_PLAY' | 'PAUSED' | 'FINISHED' | 'TIMED'
@@ -32,6 +34,8 @@ export interface Player {
 }
 
 export interface Lineup {
+  homeTeam?: any
+  awayTeam?: any
   homeFormation: string
   awayFormation: string
   homeStartingXI: Player[]
@@ -51,6 +55,7 @@ export interface MatchEvent {
 }
 
 export interface MatchStats {
+  passAccuracy: { home: number; away: number }
   possession: { home: number; away: number }
   shots: { home: number; away: number }
   shotsOnTarget: { home: number; away: number }

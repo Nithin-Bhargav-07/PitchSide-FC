@@ -13,7 +13,8 @@ const IconMap: Record<string, React.ElementType> = {
 export const TacticsPanel = ({ match }: { match: Match }) => {
   const { matchPreviews } = useStore()
   
-  const { data: lineup } = useMatchDetail(match.id)
+  const { data: lineupData } = useMatchDetail(match.id)
+  const lineup: any = lineupData
   
   const homeDemo = getDemoLineup(match.homeTeam.tla)
   const awayDemo = getDemoLineup(match.awayTeam.tla)

@@ -23,7 +23,8 @@ const DEV_GENERIC_LINEUP = [
 ]
 
 export const LineupPanel = ({ match }: { match: Match }) => {
-  const { data: lineup, isLoading, error } = useMatchDetail(match.id, { enabled: match._raw_lineps !== '0' })
+  const { data: lineupData, isLoading, error } = useMatchDetail(match.id, { enabled: match._raw_lineps !== '0' })
+  const lineup: any = lineupData
 
   const homeDemo = getDemoLineup(match.homeTeam.tla)
   const awayDemo = getDemoLineup(match.awayTeam.tla)

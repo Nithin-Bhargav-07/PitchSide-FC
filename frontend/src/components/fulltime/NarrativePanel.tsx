@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import type {  Match, MatchEvent, PlayerStatSummary  } from '../../types'
 import { GraniteCard } from '../shared/GraniteCard'
-import { Skeleton } from '../shared/Skeleton'
 import axios from 'axios'
 import type { MatchInsightChips } from '../../utils/matchInsights'
 

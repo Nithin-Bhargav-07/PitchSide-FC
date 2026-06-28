@@ -3,6 +3,7 @@ import { persist } from 'zustand/middleware'
 import type {  Match, MatchEvent, MatchStats, WhatIfChange  } from '../types'
 
 interface Store {
+  setDemoMode?: any
   theme: 'dark' | 'light'
   setTheme: (theme: 'dark' | 'light') => void
 

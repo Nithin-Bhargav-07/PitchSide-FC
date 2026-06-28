@@ -16,14 +16,15 @@ const LiveMatchSelector = () => {
   const { data: matches } = useMatches()
   const { liveMatchId, setLiveMatchId } = useStore()
   
-  const liveMatches = (matches || []).filter(m => ['LIVE', 'IN_PLAY', 'PAUSED'].includes(m.status))
-  
   // Auto-select first live match if none selected
   useEffect(() => {
+    const liveMatches = (matches || []).filter(m => ['LIVE', 'IN_PLAY', 'PAUSED'].includes(m.status))
     if (liveMatches.length > 0 && !liveMatchId) {
       setLiveMatchId(liveMatches[0].id)
     }
-  }, [liveMatches, liveMatchId, setLiveMatchId])
+  }, [matches, liveMatchId, setLiveMatchId])
+
+  const liveMatches = (matches || []).filter(m => ['LIVE', 'IN_PLAY', 'PAUSED'].includes(m.status))
 
   if (liveMatches.length === 0) return null
 
@@ -68,8 +69,6 @@ export const InPlay = () => {
   const { data: liveData, isLoading, error } = useLiveMatch(liveMatchId)
   
   const [activeTab, setActiveTab] = useState('feed')
-
-  const liveMatches = (matches || []).filter(m => ['LIVE', 'IN_PLAY', 'PAUSED'].includes(m.status))
 
   if (!liveMatchId) {
     return (
