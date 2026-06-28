@@ -81,11 +81,4 @@ The built-in USA 2-1 Mexico replay works with zero API calls. All Granite featur
 - IBM Docling
 - IBM watsonx.ai
 
-## Submission Links
-- [GitHub Repository](#)
-- [Live Demo](#)
-- [Video Presentation](#)
 
-## Built By
-- **Nithin**, R.M.K Engineering College, Chennai
-- **IBM SkillsBuild AI Builders Challenge, June 2026**
