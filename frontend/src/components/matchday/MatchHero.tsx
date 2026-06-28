@@ -23,7 +23,7 @@ export const MatchHero = ({ match }: { match: Match }) => {
   return (
     <div className="bg-bg-hero border-b border-border-default py-3 px-4 flex flex-col items-center">
       <div className="text-[13px] text-text-secondary tracking-widest uppercase mb-2">
-        {match.competition.name}
+        {match?.competition?.name}
       </div>
       
       <div className="flex items-center justify-center w-full gap-2 md:gap-4 mb-2">
@@ -31,7 +31,7 @@ export const MatchHero = ({ match }: { match: Match }) => {
           <span className={`font-mono text-[13px] px-2 py-0.5 rounded ${getBadgeColor(match.homeTeam.tla)}`}>
             {match.homeTeam.tla}
           </span>
-          <span className="font-display text-lg md:text-2xl font-semibold text-right">{match.homeTeam.name}</span>
+          <span className="font-display text-lg md:text-2xl font-semibold text-right">{match?.homeTeam?.name}</span>
         </div>
         
         <div className="font-mono text-2xl md:text-4xl font-medium tracking-tighter">
@@ -39,7 +39,7 @@ export const MatchHero = ({ match }: { match: Match }) => {
         </div>
         
         <div className="flex items-center gap-3 flex-1 justify-start">
-          <span className="font-display text-lg md:text-2xl font-semibold">{match.awayTeam.name}</span>
+          <span className="font-display text-lg md:text-2xl font-semibold">{match?.awayTeam?.name}</span>
           <span className={`font-mono text-[13px] px-2 py-0.5 rounded ${getBadgeColor(match.awayTeam.tla)}`}>
             {match.awayTeam.tla}
           </span>

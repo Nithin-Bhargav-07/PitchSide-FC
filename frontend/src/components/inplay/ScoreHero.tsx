@@ -17,7 +17,7 @@ export const ScoreHero = ({ match, isFullTime = false }: { match: Match, isFullT
     <div className="bg-bg-hero border-b border-border-default py-3 px-4 flex flex-col">
       <div className="flex justify-between items-center mb-2">
         <div className="text-[12px] text-accent-gold tracking-widest uppercase">
-          {match.competition.name}
+          {match?.competition?.name}
         </div>
         {isFullTime ? (
           <div className="text-[12px] font-medium bg-border-strong text-text-primary border border-border-default rounded-full px-2 py-0.5">
@@ -36,7 +36,7 @@ export const ScoreHero = ({ match, isFullTime = false }: { match: Match, isFullT
           <span className={`font-mono text-[12px] px-2 py-0.5 rounded ${getBadgeColor(match.homeTeam.tla)}`}>
             {match.homeTeam.tla}
           </span>
-          <span className="font-display text-base md:text-xl font-semibold text-center leading-tight">{match.homeTeam.name}</span>
+          <span className="font-display text-base md:text-xl font-semibold text-center leading-tight">{match?.homeTeam?.name}</span>
         </div>
         
         <div className="font-mono text-4xl font-medium tracking-tighter w-1/3 text-center">
@@ -47,7 +47,7 @@ export const ScoreHero = ({ match, isFullTime = false }: { match: Match, isFullT
           <span className={`font-mono text-[12px] px-2 py-0.5 rounded ${getBadgeColor(match.awayTeam.tla)}`}>
             {match.awayTeam.tla}
           </span>
-          <span className="font-display text-base md:text-xl font-semibold text-center leading-tight">{match.awayTeam.name}</span>
+          <span className="font-display text-base md:text-xl font-semibold text-center leading-tight">{match?.awayTeam?.name}</span>
         </div>
       </div>
       

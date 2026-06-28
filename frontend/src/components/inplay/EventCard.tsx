@@ -36,11 +36,11 @@ export const EventCard = ({ event, match }: { event: MatchEvent, match: Match })
 Event type: ${event.type}
 Minute: ${event.minute}
 Player: ${event.playerName || 'Unknown'} (use this exact name — do not substitute any other player name)
-Team: ${event.team} (${match.homeTeam.name} is home, ${match.awayTeam.name} is away)
+Team: ${event.team} (${match?.homeTeam?.name} is home, ${match?.awayTeam?.name} is away)
 Detail: ${event.detail}
 Score at time of event: ${event.score?.home ?? 0}-${event.score?.away ?? 0}
 Current match score: ${match.score?.home ?? 0}-${match.score?.away ?? 0}
-Match: ${match.homeTeam.name} vs ${match.awayTeam.name}, ${match.competition.name}
+Match: ${match?.homeTeam?.name} vs ${match?.awayTeam?.name}, ${match?.competition?.name}
 
 IMPORTANT: Only refer to the player named above. Do not invent or substitute any other player name.
 When describing what this means for the match, use the CURRENT score, not the score at the time of the event.`

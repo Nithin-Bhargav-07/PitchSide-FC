@@ -51,7 +51,7 @@ export const PlayerPanel = ({
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
             <span className="text-sm font-medium text-text-primary truncate">
-              {data.player.name}
+              {data?.player?.name}
             </span>
             <span className="text-[10px] font-mono text-text-secondary px-1.5 py-0.5 bg-bg-hover rounded border border-border-default">
               {data.player.position}
@@ -80,7 +80,7 @@ export const PlayerPanel = ({
         <div className="space-y-4">
           <div className="flex items-center gap-3 border-b border-border-default pb-2">
             {homeTeam.crest && <img src={homeTeam.crest} alt="" className="w-6 h-6 object-contain" />}
-            <h3 className="font-serif text-lg text-text-primary">{homeTeam.name} Top Performers</h3>
+            <h3 className="font-serif text-lg text-text-primary">{homeTeam?.name} Top Performers</h3>
           </div>
           <div className="space-y-2">
             {homePlayers.map(p => <PlayerCard key={p.player.id} data={p} />)}
@@ -90,7 +90,7 @@ export const PlayerPanel = ({
         <div className="space-y-4">
           <div className="flex items-center gap-3 border-b border-border-default pb-2">
             {awayTeam.crest && <img src={awayTeam.crest} alt="" className="w-6 h-6 object-contain" />}
-            <h3 className="font-serif text-lg text-text-primary">{awayTeam.name} Top Performers</h3>
+            <h3 className="font-serif text-lg text-text-primary">{awayTeam?.name} Top Performers</h3>
           </div>
           <div className="space-y-2">
             {awayPlayers.map(p => <PlayerCard key={p.player.id} data={p} />)}

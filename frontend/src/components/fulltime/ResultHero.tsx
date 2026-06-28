@@ -10,7 +10,7 @@ export const ResultHero = ({ match, details }: { match: Match, details?: any }) 
   useEffect(() => {
     const fetchTagline = async () => {
       try {
-        const text = await generateTagline(`Result: ${match.homeTeam.name} vs ${match.awayTeam.name} in the ${match.competition.name}`)
+        const text = await generateTagline(`Result: ${match?.homeTeam?.name} vs ${match?.awayTeam?.name} in the ${match?.competition?.name}`)
         setTagline(text)
       } catch (e) {
         setTagline("A favourite with no margin for error against a side that has nothing to lose.")

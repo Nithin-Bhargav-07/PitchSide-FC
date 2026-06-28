@@ -3,6 +3,8 @@ import { Skeleton } from '../shared/Skeleton'
 import { GraniteCard } from '../shared/GraniteCard'
 
 export const StandingsPanel = ({ match, standings }: { match: Match, standings?: any }) => {
+  if (!match) return <div className="p-8 text-center text-text-secondary">Loading standings...</div>;
+  
   // Simulated static standings for visual purposes if no API data exists
   const mockStandings = [
     { position: 1, team: { name: 'United States', tla: 'USA' }, playedGames: 3, won: 2, draw: 1, lost: 0, goalDifference: 4, points: 7 },
@@ -38,12 +40,12 @@ export const StandingsPanel = ({ match, standings }: { match: Match, standings?:
               ))
             ) : (
               displayStandings.map((row: any) => {
-                const isMatchTeam = row.team.name === match.homeTeam.name || row.team.name === match.awayTeam.name
+                const isMatchTeam = row?.team?.name === match?.homeTeam?.name || row?.team?.name === match?.awayTeam?.name
                 return (
                   <tr key={row.position} className={isMatchTeam ? 'bg-accent-green/5' : ''}>
                     <td className="p-3 font-mono text-center text-text-secondary">{row.position}</td>
                     <td className={`p-3 font-medium ${isMatchTeam ? 'text-accent-green' : 'text-text-primary'}`}>
-                      {row.team.name}
+                      {row?.team?.name}
                     </td>
                     <td className="p-3 font-mono text-center text-text-secondary">{row.playedGames}</td>
                     <td className="p-3 font-mono text-center text-text-secondary">{row.won}</td>

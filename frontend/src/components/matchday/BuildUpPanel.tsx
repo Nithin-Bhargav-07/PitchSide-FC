@@ -30,7 +30,7 @@ export const BuildUpPanel = ({ match }: { match: Match }) => {
         <h4 className="text-xs font-medium text-text-primary mb-3 uppercase tracking-wider">Recent Form</h4>
         <div className="grid grid-cols-2 gap-4">
           <div className="flex flex-col gap-2">
-            <span className="text-xs text-text-secondary">{match.homeTeam.name}</span>
+            <span className="text-xs text-text-secondary">{match?.homeTeam?.name}</span>
             <div className="flex gap-1.5">
               {['W', 'W', 'D', 'W', 'L'].map((f, i) => (
                 <div key={i} className={`w-6 h-6 rounded flex items-center justify-center font-mono text-[12px] font-medium ${
@@ -44,7 +44,7 @@ export const BuildUpPanel = ({ match }: { match: Match }) => {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <span className="text-xs text-text-secondary">{match.awayTeam.name}</span>
+            <span className="text-xs text-text-secondary">{match?.awayTeam?.name}</span>
             <div className="flex gap-1.5">
               {['W', 'L', 'W', 'D', 'W'].map((f, i) => (
                 <div key={i} className={`w-6 h-6 rounded flex items-center justify-center font-mono text-[12px] font-medium ${

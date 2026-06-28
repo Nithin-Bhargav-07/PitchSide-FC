@@ -65,7 +65,7 @@ export const WhatIfSimulator = ({ match, events }: { match: Match, events: Match
         home_formation: homeFormation,
         away_formation: awayFormation,
         final_score: match.score,
-        teams: { home: match.homeTeam.name, away: match.awayTeam.name }
+        teams: { home: match?.homeTeam?.name, away: match?.awayTeam?.name }
       })
       setTimeout(() => {
         setNarrative(text)

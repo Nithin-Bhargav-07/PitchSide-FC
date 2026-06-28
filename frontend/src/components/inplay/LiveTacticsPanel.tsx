@@ -12,7 +12,7 @@ export const LiveTacticsPanel = ({ match, events }: { match: Match, events: Matc
       setLoading(true)
       try {
         const text = await generateNarrative({
-          match_context: `${match.homeTeam.name} vs ${match.awayTeam.name}`,
+          match_context: `${match?.homeTeam?.name} vs ${match?.awayTeam?.name} in the ${match?.competition?.name}`,
           events: events.slice(0, 3).map(e => `${e.minute}': ${e.type} - ${e.detail}`).join(', ')
         }, 'tactics')
         setNarrative(text)

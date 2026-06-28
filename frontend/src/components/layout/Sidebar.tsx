@@ -93,13 +93,13 @@ export const Sidebar = () => {
                 }`}
               >
                 <div className="text-[12px] text-text-dark-secondary mb-1">
-                  {match.competition.name} • {format(new Date(match.utcDate), 'MMM d')}
+                  {match?.competition?.name} • {format(new Date(match.utcDate), 'MMM d')}
                 </div>
                 
                 <div className="flex justify-between items-center mb-1 px-1">
                     <div className="flex items-center gap-1.5 w-[35%]">
-                    <TeamLogo src={match.homeTeam.crest} alt={match.homeTeam.tla} tla={match.homeTeam.tla} />
-                    <span className="text-[14px] font-medium text-white truncate">{match.homeTeam.tla}</span>
+                    <TeamLogo src={match?.homeTeam?.crest} alt={match?.homeTeam?.name} tla={match?.homeTeam?.tla} />
+                    <span className="text-[14px] font-medium text-white truncate">{match?.homeTeam?.tla}</span>
                   </div>
                   <div className="flex-1 flex justify-center">
                     {isLive ? (
@@ -117,8 +117,8 @@ export const Sidebar = () => {
                     )}
                   </div>
                   <div className="flex items-center justify-end gap-1.5 w-[35%]">
-                    <span className="text-[14px] font-medium text-white truncate">{match.awayTeam.tla}</span>
-                    <TeamLogo src={match.awayTeam.crest} alt={match.awayTeam.tla} tla={match.awayTeam.tla} />
+                    <span className="text-[14px] font-medium text-white truncate">{match?.awayTeam?.tla}</span>
+                    <TeamLogo src={match?.awayTeam?.crest} alt={match?.awayTeam?.name} tla={match?.awayTeam?.tla} />
                   </div>
                 </div>
 

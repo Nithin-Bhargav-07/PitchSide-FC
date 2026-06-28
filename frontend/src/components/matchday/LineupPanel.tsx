@@ -23,7 +23,8 @@ const DEV_GENERIC_LINEUP = [
 ]
 
 export const LineupPanel = ({ match }: { match: Match }) => {
-  const { data: lineupData, isLoading, error } = useMatchDetail(match.id, { enabled: match._raw_lineps !== '0' })
+  if (!match) return <div className="p-8 text-center text-text-secondary">Loading...</div>;
+  const { data: lineupData, isLoading, error } = useMatchDetail(match?.id, { enabled: match?._raw_lineps !== '0' })
   const lineup: any = lineupData
 
   const homeDemo = getDemoLineup(match.homeTeam.tla)
@@ -59,7 +60,7 @@ export const LineupPanel = ({ match }: { match: Match }) => {
             if (needHome) {
               const formation = getTeamTactics(homeTLA)?.style ? '4-3-3' : '4-3-3' // Hardcoded to 4-3-3 for generic
               try {
-                const res = await generateLineup(match.homeTeam.name, formation)
+                const res = await generateLineup(match?.homeTeam?.name, formation)
                 const parsed = JSON.parse(res)
                 if (Array.isArray(parsed)) store.setGeneratedLineup(homeTLA, parsed)
               } catch (e) {
@@ -69,7 +70,7 @@ export const LineupPanel = ({ match }: { match: Match }) => {
             if (needAway) {
               const formation = getTeamTactics(awayTLA)?.style ? '4-3-3' : '4-3-3'
               try {
-                const res2 = await generateLineup(match.awayTeam.name, formation)
+                const res2 = await generateLineup(match?.awayTeam?.name, formation)
                 const parsed2 = JSON.parse(res2)
                 if (Array.isArray(parsed2)) store.setGeneratedLineup(awayTLA, parsed2)
               } catch (e) {
@@ -175,8 +176,8 @@ export const LineupPanel = ({ match }: { match: Match }) => {
           </div>
         )}
         <div className="grid grid-cols-2 gap-6">
-          {renderTeam(match.homeTeam.name, homeFormation, homeLineup)}
-          {renderTeam(match.awayTeam.name, awayFormation, awayLineup)}
+          {renderTeam(match?.homeTeam?.name, homeFormation, homeLineup)}
+          {renderTeam(match?.awayTeam?.name, awayFormation, awayLineup)}
         </div>
       </div>
     )

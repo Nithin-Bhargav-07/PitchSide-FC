@@ -106,11 +106,11 @@ const FullTimeSidebar = () => {
                 <div className="flex items-center gap-2 mb-1">
                   <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded ${isSelected ? 'text-accent-green bg-accent-green/10' : 'text-accent-green bg-accent-green/10'}`}>FT</span>
                   <span className={`text-[13px] font-medium font-mono ${isSelected ? 'text-[#FFFFFF]' : 'text-inherit'}`}>
-                    {m.homeTeam.tla} <span className="mx-1 font-bold">{homeScore} - {awayScore}</span> {m.awayTeam.tla}
+                    {m?.homeTeam?.tla} <span className="mx-1 font-bold">{homeScore} - {awayScore}</span> {m?.awayTeam?.tla}
                   </span>
                 </div>
                 <div className={`text-[11px] truncate ${isSelected ? 'text-text-secondary' : 'text-inherit opacity-70'}`}>
-                  {m.competition.name}
+                  {m?.competition?.name}
                 </div>
               </button>
             )

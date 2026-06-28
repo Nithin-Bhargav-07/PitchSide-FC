@@ -42,13 +42,13 @@ export const Matchday = () => {
           const homeKeyPlayers = homeDemo ? homeDemo.lineup.filter(p => p.isKey).map(p => p.name).join(', ') : ''
           const awayKeyPlayers = awayDemo ? awayDemo.lineup.filter(p => p.isKey).map(p => p.name).join(', ') : ''
 
-          console.log(`Calling match_preview for: ${selectedMatch.homeTeam.name} vs ${selectedMatch.awayTeam.name}, matchId: ${selectedMatch.id}`)
+          console.log(`Calling match_preview for: ${selectedMatch?.homeTeam?.name} vs ${selectedMatch?.awayTeam?.name}, matchId: ${selectedMatch.id}`)
           const preview = await fetchMatchPreview({
-            homeTeam: selectedMatch.homeTeam.name,
-            awayTeam: selectedMatch.awayTeam.name,
+            homeTeam: selectedMatch?.homeTeam?.name,
+            awayTeam: selectedMatch?.awayTeam?.name,
             homeTLA: selectedMatch.homeTeam.tla,
             awayTLA: selectedMatch.awayTeam.tla,
-            competition: selectedMatch.competition.name,
+            competition: selectedMatch?.competition?.name,
             standingGroup: selectedMatch.group || 'N/A',
             startDateTimeUtc: selectedMatch.utcDate,
             homeFormation: homeDemo ? homeDemo.formation : '4-3-3',
@@ -62,8 +62,8 @@ export const Matchday = () => {
           setMatchPreview(matchId, {
             tagline: "A crucial encounter with no margin for error.",
             story: "Both teams arrive knowing that any mistake could be fatal. The stakes have never been higher.",
-            tactics_home: `${selectedMatch.homeTeam.name} will look to control the tempo.`,
-            tactics_away: `${selectedMatch.awayTeam.name} will try to strike on the break.`,
+            tactics_home: `${selectedMatch?.homeTeam?.name} will look to control the tempo.`,
+            tactics_away: `${selectedMatch?.awayTeam?.name} will try to strike on the break.`,
             buildup: "The atmosphere is electric as the fans await kickoff.",
             key_battle: "The midfield battle will be decisive.",
             key_battles: []

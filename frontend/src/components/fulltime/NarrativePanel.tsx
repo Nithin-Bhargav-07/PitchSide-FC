@@ -24,9 +24,9 @@ export const NarrativePanel = ({
     const fetchNarrative = async () => {
       setLoading(true)
       try {
-        const topPlayer = playerStats && playerStats.length > 0 ? playerStats[0].player.name : "None"
+        const topPlayer = playerStats && playerStats.length > 0 ? playerStats[0].player?.name : "None"
         
-        const facts = `Match: ${match.homeTeam.name} vs ${match.awayTeam.name}. Final score: ${match.score.home}-${match.score.away}. Important events: ${events.map(e => `${e.minute}' ${e.type} by ${e.playerName}`).join(', ')}. Top player: ${topPlayer}. Turning point: ${insights.turningPoint}. Decisive moment: ${insights.decisiveMoment}.`
+        const facts = `Match: ${match?.homeTeam?.name} vs ${match?.awayTeam?.name}. Final score: ${match.score.home}-${match.score.away}. Important events: ${events.map(e => `${e.minute}' ${e.type} by ${e.playerName}`).join(', ')}. Top player: ${topPlayer}. Turning point: ${insights.turningPoint}. Decisive moment: ${insights.decisiveMoment}.`
         
         const response = await axios.post(`${BASE}/granite/postmatch`, {
           facts,
