@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, RefObject } from 'react'
 import { generateNarrative } from '../../api/granite'
 import { Send, ChevronDown, ChevronUp } from 'lucide-react'
 import { Skeleton } from '../shared/Skeleton'
@@ -41,6 +41,57 @@ const HistoryItem = ({ q, a }: { q: string, a: string }) => {
     </div>
   )
 }
+
+const row1 = ["What is offside?", "When is a red card given?", "How does VAR work?", "What is a penalty?"]
+const row2 = ["What counts as a foul?", "Can a goalkeeper score?", "How many subs are allowed?", "What is the advantage rule?"]
+
+interface InputSectionProps {
+  input: string;
+  setInput: (value: string) => void;
+  handleSend: (queryOverride?: string) => void;
+  loading: boolean;
+  inputRef: RefObject<HTMLTextAreaElement>;
+}
+
+const InputSection = ({ input, setInput, handleSend, loading, inputRef }: InputSectionProps) => (
+  <div className="w-full">
+    <div className="flex flex-wrap justify-center gap-2 max-w-xl mx-auto mb-4">
+      {[...row1, ...row2].map(q => (
+        <button 
+          key={q} 
+          onClick={() => handleSend(q)}
+          className="whitespace-nowrap bg-bg-card hover:bg-bg-hover border border-border-default rounded-full px-3 py-1.5 text-[12px] text-text-secondary transition-colors"
+        >
+          {q}
+        </button>
+      ))}
+    </div>
+    
+    <div className="relative w-full max-w-2xl mx-auto">
+      <textarea 
+        ref={inputRef}
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault()
+            handleSend()
+          }
+        }}
+        placeholder="Ask anything about football rules or tactics..."
+        className="w-full bg-bg-card border border-border-default rounded-xl p-4 pr-14 text-[14px] text-text-primary resize-none outline-none focus:border-accent-ai transition-colors min-h-[80px]"
+        disabled={loading}
+      />
+      <button 
+        onClick={() => handleSend()}
+        disabled={!input.trim() || loading}
+        className="absolute right-3 bottom-3 w-8 h-8 rounded-full bg-accent-green text-black flex items-center justify-center disabled:opacity-50 transition-colors"
+      >
+        <Send className="w-4 h-4 ml-0.5" />
+      </button>
+    </div>
+  </div>
+)
 
 export const AskAnything = () => {
   const [history, setHistory] = useState<{ q: string, a: string }[]>([])
@@ -100,57 +151,14 @@ export const AskAnything = () => {
     }
   }
 
-  const row1 = ["What is offside?", "When is a red card given?", "How does VAR work?", "What is a penalty?"]
-  const row2 = ["What counts as a foul?", "Can a goalkeeper score?", "How many subs are allowed?", "What is the advantage rule?"]
-
   const isHistoryEmpty = history.length === 0 && !loading
-
-  const InputSection = () => (
-    <div className="w-full">
-      <div className="flex flex-wrap justify-center gap-2 max-w-xl mx-auto mb-4">
-        {[...row1, ...row2].map(q => (
-          <button 
-            key={q} 
-            onClick={() => handleSend(q)}
-            className="whitespace-nowrap bg-bg-card hover:bg-bg-hover border border-border-default rounded-full px-3 py-1.5 text-[12px] text-text-secondary transition-colors"
-          >
-            {q}
-          </button>
-        ))}
-      </div>
-      
-      <div className="relative w-full max-w-2xl mx-auto">
-        <textarea 
-          ref={inputRef}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-              e.preventDefault()
-              handleSend()
-            }
-          }}
-          placeholder="Ask anything about football rules or tactics..."
-          className="w-full bg-bg-card border border-border-default rounded-xl p-4 pr-14 text-[14px] text-text-primary resize-none outline-none focus:border-accent-ai transition-colors min-h-[80px]"
-          disabled={loading}
-        />
-        <button 
-          onClick={() => handleSend()}
-          disabled={!input.trim() || loading}
-          className="absolute right-3 bottom-3 w-8 h-8 rounded-full bg-accent-green text-black flex items-center justify-center disabled:opacity-50 transition-colors"
-        >
-          <Send className="w-4 h-4 ml-0.5" />
-        </button>
-      </div>
-    </div>
-  )
 
   return (
     <div className="flex flex-col h-full bg-bg-primary max-w-4xl mx-auto relative">
       {isHistoryEmpty ? (
         <div className="flex flex-col justify-center items-center flex-1 min-h-[60vh] max-w-2xl mx-auto w-full px-4">
           <h2 className="font-display text-xl text-text-primary text-center mb-6">What do you want to know about football?</h2>
-          <InputSection />
+          <InputSection input={input} setInput={setInput} handleSend={handleSend} loading={loading} inputRef={inputRef} />
         </div>
       ) : (
         <>
@@ -191,7 +199,7 @@ export const AskAnything = () => {
           </div>
           
           <div className="fixed bottom-0 left-0 right-0 md:static p-4 bg-bg-primary border-t border-border-default z-10">
-            <InputSection />
+            <InputSection input={input} setInput={setInput} handleSend={handleSend} loading={loading} inputRef={inputRef} />
           </div>
         </>
       )}
