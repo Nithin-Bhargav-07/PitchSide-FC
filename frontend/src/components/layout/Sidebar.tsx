@@ -77,6 +77,10 @@ export const Sidebar = () => {
       <div className="flex-1 overflow-y-auto p-2 space-y-1">
         {isLoading ? (
           <div className="p-3 text-center text-[14px] text-text-dark-secondary">Loading matches...</div>
+        ) : ['PL', 'CL', 'PD'].includes(activeCompetition) ? (
+          <div className="text-text-dim text-xs text-center p-4">
+            Competition data coming soon — try World Cup
+          </div>
         ) : !matches || matches.length === 0 ? (
           <div className="p-3 text-center text-[14px] text-text-dark-secondary">No matches found.</div>
         ) : (

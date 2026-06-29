@@ -2,15 +2,38 @@ import { useStore } from '../../store/useStore'
 
 export const BattlesPanel = ({ matchId }: { matchId: string }) => {
   const matchPreviews = useStore((state) => state.matchPreviews)
+  const selectedMatch = useStore((state) => state.selectedMatch)
   const preview = matchPreviews[matchId]
 
-  const defaultBattles = [
-    { homePlayer: 'Player TBD', awayPlayer: 'Player TBD', homeInitials: 'P1', awayInitials: 'P2', insight: 'Awaiting tactical analysis for this key duel.' },
-    { homePlayer: 'Player TBD', awayPlayer: 'Player TBD', homeInitials: 'P1', awayInitials: 'P2', insight: 'Awaiting tactical analysis for this key duel.' },
-    { homePlayer: 'Player TBD', awayPlayer: 'Player TBD', homeInitials: 'P1', awayInitials: 'P2', insight: 'Awaiting tactical analysis for this key duel.' }
+  const homeTeam = selectedMatch?.homeTeam?.name || 'Home'
+  const awayTeam = selectedMatch?.awayTeam?.name || 'Away'
+
+  const getDefaultBattles = (homeTeam: string, awayTeam: string) => [
+    {
+      homePlayer: `${homeTeam} Striker`,
+      awayPlayer: `${awayTeam} Defender`,
+      homeInitials: homeTeam.slice(0,2).toUpperCase(),
+      awayInitials: awayTeam.slice(0,2).toUpperCase(),
+      insight: `The attacking vs defensive duel that will define how ${homeTeam} break through ${awayTeam}'s defensive shape.`
+    },
+    {
+      homePlayer: `${homeTeam} Midfielder`,
+      awayPlayer: `${awayTeam} Midfielder`,
+      homeInitials: homeTeam.slice(0,2).toUpperCase(),
+      awayInitials: awayTeam.slice(0,2).toUpperCase(),
+      insight: `Midfield control will determine which team dictates the tempo and creates the most dangerous opportunities.`
+    },
+    {
+      homePlayer: `${homeTeam} Winger`,
+      awayPlayer: `${awayTeam} Fullback`,
+      homeInitials: homeTeam.slice(0,2).toUpperCase(),
+      awayInitials: awayTeam.slice(0,2).toUpperCase(),
+      insight: `The wide battle where pace and positioning will be tested every time ${homeTeam} attack down the flanks.`
+    }
   ]
 
-  const battles = preview?.key_battles && preview.key_battles.length > 0 ? preview.key_battles : defaultBattles
+  const hasTBD = preview?.key_battles?.some((b: any) => b.homePlayer === 'Player TBD' || b.awayPlayer === 'Player TBD')
+  const battles = preview?.key_battles && preview.key_battles.length > 0 && !hasTBD ? preview.key_battles : getDefaultBattles(homeTeam, awayTeam)
 
   return (
     <div className="flex flex-col gap-3">

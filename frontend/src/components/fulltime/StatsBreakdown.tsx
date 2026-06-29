@@ -4,7 +4,7 @@ import { StatBar } from '../shared/StatBar'
 import { Skeleton } from '../shared/Skeleton'
 
 export const StatsBreakdown = ({ stats }: { stats: MatchStats }) => {
-  console.log("Stats Breakdown received:", stats)
+  console.log('Stats received:', JSON.stringify(stats))
 
   if (!stats) {
     return (
@@ -16,12 +16,21 @@ export const StatsBreakdown = ({ stats }: { stats: MatchStats }) => {
     )
   }
 
-  if (!stats.possession || (!stats.possession.home && !stats.possession.away)) {
+  const allZero = Object.values(stats).every(val => 
+    typeof val === 'object' 
+      ? (val.home === 0 && val.away === 0) 
+      : true
+  )
+
+  if (allZero) {
     return (
-      <div className="flex flex-col gap-4">
-        <div className="flex justify-center items-center h-32 text-text-secondary text-sm">
-          Match stats unavailable
-        </div>
+      <div className="flex flex-col items-center justify-center py-16 text-center gap-2">
+        <p className="text-text-secondary text-sm">
+          Detailed statistics unavailable for this match
+        </p>
+        <p className="text-text-dim text-xs">
+          Try Algeria 3-3 Austria or Norway 1-4 France for full stats
+        </p>
       </div>
     )
   }

@@ -575,7 +575,7 @@ async def get_match_stats(match_id: str):
                     return {"home": 0, "away": 0}
         return {"home": 0, "away": 0}
 
-    return {
+    stats = {
         "possession": _val("possession"),
         "shots": _val("shots total"),
         "shotsOnTarget": _val("shots on target"),
@@ -592,6 +592,10 @@ async def get_match_stats(match_id: str):
         "accuratePassesPercentage": _val("passes accurate"),
         "expectedGoals": _val("expected goals")
     }
+    
+    print(f"[STATS] Returning stats for {match_id}:\n  possession={stats.get('possession')},\n  shots={stats.get('shots')}")
+    
+    return stats
 
 async def get_match_playerstats(match_id: str):
     headers = {"X-API-Key": SPORTDB_API_KEY or ""}

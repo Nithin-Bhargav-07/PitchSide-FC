@@ -10,11 +10,15 @@ export const PlayerPanel = ({
   awayTeam: Team, 
   playerStats: PlayerStatSummary[] 
 }) => {
-  if (!playerStats || !Array.isArray(playerStats) || playerStats.length === 0) {
+  const allStatsZero = !playerStats || !Array.isArray(playerStats) || playerStats.length === 0 || playerStats.every(p => 
+    !p.stats || p.stats.length === 0 || p.stats.every(s => s.numericValue === 0)
+  )
+
+  if (allStatsZero) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
         <span className="text-text-secondary text-sm">
-          Player ratings unavailable for this match
+          Detailed player stats aren't available for this match.
         </span>
         <span className="text-text-dim text-xs mt-1">
           Try a higher-scoring match for full stats
@@ -23,10 +27,21 @@ export const PlayerPanel = ({
     )
   }
 
-  const sortedStats = [...playerStats].sort((a, b) => b.player.rating - a.player.rating)
+  const sortByRating = (arr: any[]) => [...arr].sort((a, b) => {
+    const rA = parseFloat(String(a?.player?.rating ?? '0')) || 0
+    const rB = parseFloat(String(b?.player?.rating ?? '0')) || 0
+    return rB - rA
+  })
   
-  const homePlayers = sortedStats.filter(p => p.player.teamSide === '1').slice(0, 5)
-  const awayPlayers = sortedStats.filter(p => p.player.teamSide === '2').slice(0, 5)
+  const sortedStats = sortByRating(playerStats || [])
+  
+  const homePlayers = (sortedStats || [])
+    .filter(p => p != null && p !== undefined && p.player != null && p.player.teamSide === '1')
+    .slice(0, 5)
+
+  const awayPlayers = (sortedStats || [])
+    .filter(p => p != null && p !== undefined && p.player != null && p.player.teamSide === '2')
+    .slice(0, 5)
 
   const PlayerCard = ({ data }: { data: PlayerStatSummary }) => {
     const isStar = data.player.rating > 8.0
@@ -79,7 +94,7 @@ export const PlayerPanel = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-4">
           <div className="flex items-center gap-3 border-b border-border-default pb-2">
-            {homeTeam.crest && <img src={homeTeam.crest} alt="" className="w-6 h-6 object-contain" />}
+            {homeTeam.crest && <img src={homeTeam.crest} alt="" className="w-6 h-6 object-contain" onError={(e) => { e.currentTarget.style.display = 'none' }} />}
             <h3 className="font-serif text-lg text-text-primary">{homeTeam?.name} Top Performers</h3>
           </div>
           <div className="space-y-2">
@@ -89,7 +104,7 @@ export const PlayerPanel = ({
         
         <div className="space-y-4">
           <div className="flex items-center gap-3 border-b border-border-default pb-2">
-            {awayTeam.crest && <img src={awayTeam.crest} alt="" className="w-6 h-6 object-contain" />}
+            {awayTeam.crest && <img src={awayTeam.crest} alt="" className="w-6 h-6 object-contain" onError={(e) => { e.currentTarget.style.display = 'none' }} />}
             <h3 className="font-serif text-lg text-text-primary">{awayTeam?.name} Top Performers</h3>
           </div>
           <div className="space-y-2">
