@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect, RefObject } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import type { RefObject } from 'react'
 import { generateNarrative } from '../../api/granite'
 import { Send, ChevronDown, ChevronUp } from 'lucide-react'
 import { Skeleton } from '../shared/Skeleton'
@@ -50,7 +51,7 @@ interface InputSectionProps {
   setInput: (value: string) => void;
   handleSend: (queryOverride?: string) => void;
   loading: boolean;
-  inputRef: RefObject<HTMLTextAreaElement>;
+  inputRef: RefObject<HTMLTextAreaElement | null>;
 }
 
 const InputSection = ({ input, setInput, handleSend, loading, inputRef }: InputSectionProps) => (
